@@ -91,18 +91,6 @@ allure serve results/allure-results
 
 ---
 
-## ❓ Problemas comuns
-
-| Sintoma | Causa provável | Solução |
-|---|---|---|
-| Testes falham na primeira chamada de navegador | Passo 4 (`rfbrowser init`) não foi executado | Rode `rfbrowser init` dentro do venv ativado |
-| `pip install` mostra caminho fora do projeto | Venv não foi ativado (passo 2) | Reative o venv antes de instalar |
-| `report.html`/`log.html` na raiz do projeto | Comando rodado sem `--outputdir results` | Sempre inclua `--outputdir results` |
-| `scoop`/`allure` não reconhecido após instalar | Editor mantém `PATH` antigo em memória | Feche o programa inteiro (não só o terminal) e abra de novo |
-| Relatório Allure com "0 test cases" | `allure serve` apontando pasta errada, ou testes não rodados com o listener do Allure antes | Rode primeiro o comando com `--listener allure_robotframework:results/allure-results`, depois `allure serve results/allure-results` |
-
----
-
 ## Sobre o projeto
 
 Projeto irmão do [`playwright-frontend-e2e-tests`](https://github.com/moiseschiaretto/playwright-frontend-e2e-tests) (TypeScript) e do [`robot-api-contract-tests`](https://github.com/moiseschiaretto/robot-api-contract-tests) (Robot Framework, API) — mesma disciplina de testes E2E/API, aplicada com stacks diferentes.
