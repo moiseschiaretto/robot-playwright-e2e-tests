@@ -183,22 +183,26 @@ O navegador abre **uma única vez** para toda a execução (configurado em `feat
 **Console de execução (Robot Framework nativo + Resumo da Execução):**
 
 ![Console - execução do módulo Checkout](docs/screenshots/console-execucao-checkout.png)
+*Console nativo do Robot Framework rodando o módulo Checkout — cada cenário aparece com seu status (PASS) individual.*
+
 ![Console - Resumo da Execução (16/16, 100%)](docs/screenshots/console-resumo-da-execucao.png)
+*Resumo da Execução, gerado pelo `SummaryListener.py`: os 16 cenários agrupados por módulo, com subtotal e taxa de sucesso (100%).*
 
 **Relatório Allure:**
 
 ![Allure - Overview (16 test cases, 100%)](docs/screenshots/allure-overview.png)
+*Visão geral do Allure: 16 test cases, 100% de sucesso na execução.*
+
 ![Allure - Suites (detalhe do cenário Login Válido)](docs/screenshots/allure-suites.png)
+*Detalhamento de um cenário individual (Login Válido), mostrando cada passo Given/When/Then executado.*
+
 ![Allure - Behaviors (16 cenários, todos passando)](docs/screenshots/allure-behaviors.png)
+*Todos os 16 cenários listados por comportamento (Behaviors), com tempo de execução individual.*
+
 ![Allure - Graphs (Status, Severity, Duration)](docs/screenshots/allure-graphs.png)
+*Gráficos consolidados: status geral, severidade dos testes e distribuição de duração por cenário.*
 
 ### Por que Robot Framework + Browser Library (e não Selenium)
 
 A Browser Library é a recomendação atual de mercado para novos projetos Robot Framework (2026): é mais rápida que a SeleniumLibrary, tem auto-wait nativo (menos `Sleep` espalhado pelo código) e lida melhor com aplicações modernas — e, por rodar Playwright por trás, testa **a mesma camada** já coberta no `playwright-frontend-e2e-tests`, só que com uma ferramenta diferente, demonstrando duas abordagens de mercado para o mesmo tipo de teste.
-
----
-
-## ⚠️ Nota de transparência
-
-Este projeto foi escrito com seletores confirmados via pesquisa nas fontes públicas do SauceDemo (múltiplas fontes independentes convergindo nos mesmos `id`/classes), e a consistência entre chamadas Given/When/Then e keywords definidas foi validada programaticamente (todo passo usado nos cenários tem keyword correspondente, corretamente importada, sem `Suite Setup`/`Teardown` residual nos arquivos individuais). A sintaxe de todas as keywords de screenshot e navegador foi conferida contra a documentação oficial da Browser Library antes de ser aplicada. **A suíte ainda não foi executada de ponta a ponta neste ambiente de geração** (sem acesso à internet para instalar `robotframework-browser` e acessar o SauceDemo). A primeira execução real deve ser feita localmente ou via o pipeline de CI/CD já configurado.
 
