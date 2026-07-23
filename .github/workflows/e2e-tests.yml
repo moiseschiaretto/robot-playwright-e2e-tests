@@ -1,0 +1,50 @@
+name: Robot Framework - E2E Tests (Playwright)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Configurar Node.js (necessario para o Playwright)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalar dependencias Python
+        run: pip install -r requirements.txt
+
+      - name: Instalar binarios do Playwright (Browser Library)
+        run: rfbrowser init
+
+      - name: Executar testes (Robot Framework)
+        env:
+          BASE_URL: https://www.saucedemo.com
+          BROWSER: chromium
+          HEADLESS: "True"
+        run: >
+          robot --outputdir results
+          --listener resources/listeners/SummaryListener.py
+          --listener allure_robotframework:results/allure-results
+          features/
+
+      - name: Publicar relatorios como artefato
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-framework-e2e-report
+          path: results/

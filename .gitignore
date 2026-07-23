@@ -1,0 +1,17 @@
+# Ambiente
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Resultados de execucao (destino correto: results/)
+results/
+/log.html
+/report.html
+/output.xml
+
+# Prints de evidencia por cenario, gerados a cada execucao (nao devem ir pro Git)
+evidencias/
+
+# Binarios do Playwright baixados pelo rfbrowser init
+node_modules/
